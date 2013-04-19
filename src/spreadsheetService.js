@@ -299,6 +299,9 @@ function testCode() {
             optionString += index + "=" + encodeURI(advanceOptions[index]) + "&";
         }
       }
+      if(!this.sheetList[sheetName]) {
+        this.refleshListKey();
+      }
       var url = "https://spreadsheets.google.com/feeds/list/" + this.key + "/" + this.sheetList[sheetName] +  "/private/full?alt=json&prettyprint=false&v=3.0&sq=" + encodeURIComponent(queryString) + optionString;
       var res =  UrlFetchApp.fetch(url,new OAuthOptions("get"));
       var j = Utilities.jsonParse(res.getContentText());
